@@ -1,17 +1,25 @@
 ﻿/*
 Skapa en gästbok som en konsollapplikation med möjlighet att lägga till en post, ta bort en valfri post samt visa alla poster. 
 */
+using System;
+using static System.Console; // Import to simplify code
 
 public class Program
 {
     public static void Main(string[] args)
     {
-        Console.WriteLine("Pick a username and press ENTER: ");
-        string username = Console.ReadLine();
+        WriteLine($"Welcome to my guestbook :-). There are {args.Length} arguments.");
+        foreach (string arg in args)
+        {
+            WriteLine(arg);
+        }
 
-        Console.WriteLine($"Hello {username}!");
+        // WriteLine("Pick a username and press ENTER: ");
+        // string username = ReadLine();
+
+        // WriteLine($"Hello {username}!");
     }
-} 
+}
 
 /* 
 Ett enklare menysystem hanterar de val som ska kunna genomföras: 
