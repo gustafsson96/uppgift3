@@ -4,7 +4,6 @@ Skapa en gästbok som en konsollapplikation med möjlighet att lägga till en po
 using System;
 using static System.Console; // Import to simplify code
 
-
 namespace GuestbookApp
 {
     public class Program
@@ -13,15 +12,55 @@ namespace GuestbookApp
         {
             // Create a list to store guestbook entries
             List<GuestbookEntry> guestbook = new List<GuestbookEntry>();
+            bool running = true;
 
             // Add some entries TEST
             guestbook.Add(new GuestbookEntry("Julia", "Hey here's my first entry!"));
+            guestbook.Add(new GuestbookEntry("Zed", "Hi i'm a cat"));
 
-            // Display the entries
-            WriteLine("**** Guestbook ****");
-            for (int i = 0; i < guestbook.Count; i++)
+            while (running)
             {
-                WriteLine($"[{i}] {guestbook[i].Author}: {guestbook[i].EntryText}");
+                Clear();
+                WriteLine("**** Guestbook ****");
+
+                if (guestbook.Count == 0)
+                {
+                    WriteLine("The guesbook is empty :-()");
+                }
+                else
+                {
+                    // Display the entries
+                    for (int i = 0; i < guestbook.Count; i++)
+                    {
+                        WriteLine($"[{i}] {guestbook[i].Author}: {guestbook[i].EntryText}");
+                    }
+                }
+
+                // Menu
+                WriteLine("\nMenu: ");
+                WriteLine("1. Add new entry");
+                WriteLine("2. Exit");
+                WriteLine("Choose an option: ");
+
+                string choice = ReadLine()!;
+
+                switch (choice)
+                {
+                    case "1":
+                        // Replace with AddEntry
+                        WriteLine("Add entry selected (not implemented yet)");
+                        WriteLine("Press any key to continue");
+                        ReadKey();
+                        break;
+                    case "2":
+                        running = false;
+                        break;
+                    default:
+                        WriteLine("Invalid option. Press any key to continue.");
+                        ReadKey();
+                        break;
+                }
+
             }
         }
     }
