@@ -4,51 +4,52 @@ Skapa en gästbok som en konsollapplikation med möjlighet att lägga till en po
 using System;
 using static System.Console; // Import to simplify code
 
+
 namespace GuestbookApp
 {
-
-
-public class Program
-{
-    public static void Main(string[] args)
+    public class Program
     {
-        WriteLine($"Welcome to my guestbook :-). There are {args.Length} arguments.");
-        foreach (string arg in args)
+        public static void Main()
         {
-            WriteLine(arg);
+            // Create a list to store guestbook entries
+            List<GuestbookEntry> guestbook = new List<GuestbookEntry>();
+
+            // Add some entries TEST
+            guestbook.Add(new GuestbookEntry("Julia", "Hey here's my first entry!"));
+
+            // Display the entries
+            WriteLine("**** Guestbook ****");
+            for (int i = 0; i < guestbook.Count; i++)
+            {
+                WriteLine($"[{i}] {guestbook[i].Author}: {guestbook[i].EntryText}");
+            }
         }
-
-        // WriteLine("Pick a username and press ENTER: ");
-        // string username = ReadLine();
-
-        // WriteLine($"Hello {username}!");
     }
-}
 
-/* 
-Ett enklare menysystem hanterar de val som ska kunna genomföras: 
-1. Lägg till inlägg ska ge dig valet att mata in ägare samt det nya inlägget. Dessa fält får ej vara tomma.
-2. Ta bort inlägg ska fråga efter valt index (till vänster i listan av inlägg på bild ovan) att ta bort innan radering
-av inlägget. 
-*/
+    /* 
+    Ett enklare menysystem hanterar de val som ska kunna genomföras: 
+    1. Lägg till inlägg ska ge dig valet att mata in ägare samt det nya inlägget. Dessa fält får ej vara tomma.
+    2. Ta bort inlägg ska fråga efter valt index (till vänster i listan av inlägg på bild ovan) att ta bort innan radering
+    av inlägget. 
+    */
 
-/*
- Inläggen ska innehålla två fält, "ägare till inlägget" samt texten för inlägget. 
-*/
+    /*
+     Inläggen ska innehålla två fält, "ägare till inlägget" samt texten för inlägget. 
+    */
 
-/*
-Gästbokens inlägg ska serialiseras/deserialiseras samt sparas på fil antingen binärt eller som json, 
-så att tidigare inmatad data finns lagrad
-*/
+    /*
+    Gästbokens inlägg ska serialiseras/deserialiseras samt sparas på fil antingen binärt eller som json, 
+    så att tidigare inmatad data finns lagrad
+    */
 
-/*
-Felhantering i from av en kontroll sp att inmatningsfält inte är tomma. 
-*/
+    /*
+    Felhantering i from av en kontroll sp att inmatningsfält inte är tomma. 
+    */
 
-/*
- Efter varje genomfört menyval ska skärmen skrivas om. Detta sker enklast genom att man "rensar" konsolen och 
-sedan ritar/skriver om den. Se Console.Clear för mer information om hur detta kan ske. 
-*/
+    /*
+     Efter varje genomfört menyval ska skärmen skrivas om. Detta sker enklast genom att man "rensar" konsolen och 
+    sedan ritar/skriver om den. Se Console.Clear för mer information om hur detta kan ske. 
+    */
 
-    
+
 }
