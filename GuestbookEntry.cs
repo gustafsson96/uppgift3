@@ -8,6 +8,8 @@ public class GuestbookEntry
     // Runs automatically when a new GuestbookEntry object is created
     public GuestbookEntry(string author, string entryText)
     {
+        // Add user input validation here
+
         Author = author;
         EntryText = entryText;
     }
