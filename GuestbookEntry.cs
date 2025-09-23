@@ -1,18 +1,19 @@
-// Class for guestbook entries
-public class GuestbookEntry
+namespace GuestbookApp
 {
-    public string Author { get; set; } // The author of the entry
-    public string EntryText { get; set; } // The text of the entry
-
-    // Constructor for the GuestbookEntry class
-    // Runs automatically when a new GuestbookEntry object is created
-    public GuestbookEntry(string author, string entryText)
+    // Class for guestbook entries
+    public class GuestbookEntry
     {
-        // Add user input validation here
+        public string Author { get; set; } // The author of the entry
+        public string EntryText { get; set; } // The text of the entry
 
-        Author = author;
-        EntryText = entryText;
+        // Constructor for the GuestbookEntry class
+        // Runs automatically when a new GuestbookEntry object is created
+        public GuestbookEntry(string author, string entryText)
+        {
+            // Add user input validation here
+
+            Author = author;
+            EntryText = entryText;
+        }
     }
-
-
 }

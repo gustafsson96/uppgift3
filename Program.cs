@@ -4,6 +4,10 @@ Skapa en gästbok som en konsollapplikation med möjlighet att lägga till en po
 using System;
 using static System.Console; // Import to simplify code
 
+namespace GuestbookApp
+{
+
+
 public class Program
 {
     public static void Main(string[] args)
@@ -45,3 +49,6 @@ Felhantering i from av en kontroll sp att inmatningsfält inte är tomma.
  Efter varje genomfört menyval ska skärmen skrivas om. Detta sker enklast genom att man "rensar" konsolen och 
 sedan ritar/skriver om den. Se Console.Clear för mer information om hur detta kan ske. 
 */
+
+    
+}
