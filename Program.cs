@@ -21,25 +21,13 @@ namespace GuestbookApp
             while (running)
             {
                 Clear();
-                WriteLine("**** Guestbook ****");
-
-                if (guestbook.Count == 0)
-                {
-                    WriteLine("The guesbook is empty :-()");
-                }
-                else
-                {
-                    // Display the entries
-                    for (int i = 0; i < guestbook.Count; i++)
-                    {
-                        WriteLine($"[{i}] {guestbook[i].Author}: {guestbook[i].EntryText}");
-                    }
-                }
+                WriteLine("**** Guestbook Menu ****");
 
                 // Menu
                 WriteLine("\nMenu: ");
                 WriteLine("1. Add new entry");
-                WriteLine("2. Exit");
+                WriteLine("2. Show all entries");
+                WriteLine("3. Exit");
                 WriteLine("Choose an option: ");
 
                 string choice = ReadLine()!;
@@ -53,6 +41,13 @@ namespace GuestbookApp
                         ReadKey();
                         break;
                     case "2":
+                        Clear();
+                        WriteLine("**** Guestbook Entries ****\n");
+                        ShowEntries(guestbook);
+                        WriteLine("\nPress any button to go back to the menu");
+                        ReadKey();
+                        break;
+                    case "3":
                         running = false;
                         break;
                     default:
@@ -61,6 +56,22 @@ namespace GuestbookApp
                         break;
                 }
 
+            }
+
+            static void ShowEntries(List<GuestbookEntry> guestbook)
+            {
+                if (guestbook.Count == 0)
+                {
+                    WriteLine("The guesbook is empty :-()");
+                }
+                else
+                {
+                    // Display the entries
+                    for (int i = 0; i < guestbook.Count; i++)
+                    {
+                        WriteLine($"[{i}] {guestbook[i].Author}: {guestbook[i].EntryText}");
+                    }
+                }
             }
         }
     }
