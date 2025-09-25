@@ -54,6 +54,8 @@ namespace GuestbookApp
 
                     // Create new entry
                     case "2":
+                        Clear();
+                        WriteLine("**** CREATE NEW ENTRY ****\n");
                         AddEntry(guestbook);
                         WriteLine("\nSucess! Press any button to go back to the menu");
                         ReadKey();
@@ -73,8 +75,6 @@ namespace GuestbookApp
 
         static void AddEntry(List<GuestbookEntry> guestbook)
         {
-            WriteLine("Let's create a new entry!\n");
-
             string author = "";
             while (string.IsNullOrWhiteSpace(author))
             {
@@ -82,7 +82,7 @@ namespace GuestbookApp
                 author = ReadLine()!;
                 if (string.IsNullOrWhiteSpace(author))
                 {
-                    WriteLine("Name cannot be empty. Please try again.");
+                    WriteLine("\nName cannot be empty. Please try again.\n");
                 }
             }
 
@@ -93,7 +93,7 @@ namespace GuestbookApp
                 entryText = ReadLine()!;
                 if (string.IsNullOrWhiteSpace(entryText))
                 {
-                    WriteLine("Text field cannot be empty. Please try again.");
+                    WriteLine("\nText field cannot be empty. Please try again.\n");
                 }
             }
 
@@ -137,7 +137,7 @@ så att tidigare inmatad data finns lagrad
 */
 
 /*
-Felhantering i from av en kontroll sp att inmatningsfält inte är tomma. 
+Felhantering i from av en kontroll så att inmatningsfält inte är tomma. 
 */
 
 /*

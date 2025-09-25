@@ -2,5 +2,33 @@
   {
     "Author": "Julia",
     "EntryText": "Heres my first guestbook entry!"
+  },
+  {
+    "Author": "Testperson",
+    "EntryText": "Hej hej bloggen"
+  },
+  {
+    "Author": "hej",
+    "EntryText": "hej"
+  },
+  {
+    "Author": "Julia",
+    "EntryText": "H\u00E4r \u00E4r ett inl\u00E4gg"
+  },
+  {
+    "Author": "s",
+    "EntryText": "s"
+  },
+  {
+    "Author": "Julia",
+    "EntryText": "Inl\u00E4gg"
+  },
+  {
+    "Author": "Julia",
+    "EntryText": "Julia"
+  },
+  {
+    "Author": "Julia",
+    "EntryText": "julia"
   }
 ]
