@@ -1,7 +1,8 @@
 ﻿/*
 Skapa en gästbok som en konsollapplikation med möjlighet att lägga till en post, ta bort en valfri post samt visa alla poster. 
 */
-using System;
+using System.Diagnostics;
+using System.Text.Json;
 using static System.Console; // Import to simplify code
 
 namespace GuestbookApp
@@ -11,12 +12,20 @@ namespace GuestbookApp
         public static void Main()
         {
             // Create a list to store guestbook entries
-            List<GuestbookEntry> guestbook = new List<GuestbookEntry>();
-            bool running = true;
+            string filePath = "guestbook.json";
+            List<GuestbookEntry> guestbook;
 
-            // Add some entries TEST
-            guestbook.Add(new GuestbookEntry("Julia", "Hey here's my first entry!"));
-            guestbook.Add(new GuestbookEntry("Zed", "Hi i'm a cat"));
+            if (File.Exists(filePath))
+            {
+                string json = File.ReadAllText(filePath);
+                guestbook = JsonSerializer.Deserialize<List<GuestbookEntry>>(json) ?? new List<GuestbookEntry>();
+            }
+            else
+            {
+                guestbook = new List<GuestbookEntry>();
+            }
+
+            bool running = true;
 
             while (running)
             {
@@ -89,13 +98,15 @@ namespace GuestbookApp
             }
 
             guestbook.Add(new GuestbookEntry(author, entryText));
+            string json = JsonSerializer.Serialize(guestbook, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText("guestbook.json", json);
         }
 
         static void ShowEntries(List<GuestbookEntry> guestbook)
         {
             if (guestbook.Count == 0)
             {
-                WriteLine("The guesbook is empty :-()");
+                WriteLine("The guesbook is empty :-(");
             }
             else
             {
