@@ -36,7 +36,8 @@ namespace GuestbookApp
                 WriteLine("\nMenu: ");
                 WriteLine("1. Show all entries");
                 WriteLine("2. Add new entry");
-                WriteLine("3. Exit");
+                WriteLine("3. Delete an entry");
+                WriteLine("4. Exit");
                 WriteLine("Choose an option: ");
 
                 string choice = ReadLine()!;
@@ -60,8 +61,14 @@ namespace GuestbookApp
                         WriteLine("\nSucess! Press any button to go back to the menu");
                         ReadKey();
                         break;
-                    // Exit
+                    // Delete an entry
                     case "3":
+                        Clear();
+                        WriteLine("**** DELETE AN ENTRY ****\n");
+                        DeleteEntry(guestbook);
+                        break;
+                    // Exit
+                    case "4":
                         running = false;
                         break;
                     default:
@@ -100,6 +107,54 @@ namespace GuestbookApp
             guestbook.Add(new GuestbookEntry(author, entryText));
             string json = JsonSerializer.Serialize(guestbook, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText("guestbook.json", json);
+        }
+
+        static void DeleteEntry(List<GuestbookEntry> guestbook)
+        {
+            if (guestbook.Count == 0)
+            {
+                WriteLine("The guestbook is empty.");
+                return;
+            }
+
+            bool deleting = true;
+            while (deleting && guestbook.Count > 0)
+            {
+                ShowEntries(guestbook);
+
+                int index;
+                while (true)
+                {
+                    Write("\nEnter the number of the entry you want to delete: ");
+                    string input = ReadLine()!;
+                    if (int.TryParse(input, out index) && index >= 0 && index < guestbook.Count)
+                    {
+                        break; // Valid index
+                    }
+                    WriteLine("Invalid number. Please try again.");
+                }
+
+                guestbook.RemoveAt(index); //Remove the entry
+
+                // Save update guesbook
+                string json = JsonSerializer.Serialize(guestbook, new JsonSerializerOptions { WriteIndented = true });
+                File.WriteAllText("guestbook.json", json);
+
+                Clear();
+                WriteLine("\nEntry deleted succesfully.");
+
+
+                // Show updated list immediately
+                WriteLine("\n**** UPDATED GUESTBOOK ****\n");
+                ShowEntries(guestbook);
+
+                // Ask user if they want to delete another
+                WriteLine("\nPress 1 to delete another entry, or any other key to return to the menu:");
+                string choice = ReadLine()!;
+                deleting = choice == "1";
+                Clear();
+                WriteLine("**** DELETE AN ENTRY ****\n");
+            }
         }
 
         static void ShowEntries(List<GuestbookEntry> guestbook)
