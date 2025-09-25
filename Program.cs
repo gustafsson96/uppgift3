@@ -49,7 +49,7 @@ namespace GuestbookApp
                         Clear();
                         WriteLine("**** GUESTBOOK ENTRIES ****\n");
                         ShowEntries(guestbook);
-                        WriteLine("\nPress any button to go back to the menu");
+                        WriteLine("\nPress any button to go back to the menu: ");
                         ReadKey();
                         break;
 
@@ -58,7 +58,7 @@ namespace GuestbookApp
                         Clear();
                         WriteLine("**** CREATE NEW ENTRY ****\n");
                         AddEntry(guestbook);
-                        WriteLine("\nSucess! Press any button to go back to the menu");
+                        WriteLine("\nSucess! Press any button to go back to the menu: ");
                         ReadKey();
                         break;
                     // Delete an entry
