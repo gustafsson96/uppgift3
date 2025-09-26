@@ -1,6 +1,5 @@
-﻿/*
-Skapa en gästbok som en konsollapplikation med möjlighet att lägga till en post, ta bort en valfri post samt visa alla poster. 
-*/
+﻿// Uppgift 3 - Julia Gustafsson
+
 using System.Diagnostics;
 using System.Text.Json;
 using static System.Console; // Import to simplify code
@@ -15,6 +14,7 @@ namespace GuestbookApp
             string filePath = "guestbook.json";
             List<GuestbookEntry> guestbook;
 
+            // Check if list exists in json storage
             if (File.Exists(filePath))
             {
                 string json = File.ReadAllText(filePath);
@@ -27,12 +27,13 @@ namespace GuestbookApp
 
             bool running = true;
 
+            // Guestbook menu prompting for user input
             while (running)
             {
                 Clear();
                 WriteLine("**** GUESTBOOK MENU ****");
 
-                // Menu
+                // Menu options
                 WriteLine("\nMenu: ");
                 WriteLine("1. Show all entries");
                 WriteLine("2. Add new entry");
@@ -44,7 +45,7 @@ namespace GuestbookApp
 
                 switch (choice)
                 {
-                    // Show available entries
+                    // Option 1: Show available entries
                     case "1":
                         Clear();
                         WriteLine("**** GUESTBOOK ENTRIES ****\n");
@@ -53,7 +54,7 @@ namespace GuestbookApp
                         ReadKey();
                         break;
 
-                    // Create new entry
+                    // Option 2: Create new entry
                     case "2":
                         Clear();
                         WriteLine("**** CREATE NEW ENTRY ****\n");
@@ -61,13 +62,13 @@ namespace GuestbookApp
                         WriteLine("\nSucess! Press any button to go back to the menu.");
                         ReadKey();
                         break;
-                    // Delete an entry
+                    // Option 3: Delete an entry
                     case "3":
                         Clear();
                         WriteLine("**** DELETE AN ENTRY ****\n");
                         DeleteEntry(guestbook);
                         break;
-                    // Exit
+                    // Option 4: Exit
                     case "4":
                         running = false;
                         break;
@@ -80,9 +81,12 @@ namespace GuestbookApp
             }
         }
 
+        // Method to add a new guestbook entry
         static void AddEntry(List<GuestbookEntry> guestbook)
         {
             string author = "";
+
+            // Validate use input
             while (string.IsNullOrWhiteSpace(author))
             {
                 Write("Enter your name: ");
@@ -104,13 +108,18 @@ namespace GuestbookApp
                 }
             }
 
+            // Create new guestbook entry using GuesbookEntry class
             guestbook.Add(new GuestbookEntry(author, entryText));
+
+            // Store using json
             string json = JsonSerializer.Serialize(guestbook, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText("guestbook.json", json);
         }
 
+        // Method to delete a guestbook entry
         static void DeleteEntry(List<GuestbookEntry> guestbook)
         {
+            // Check if there are any entries to display
             if (guestbook.Count == 0)
             {
                 WriteLine("The guestbook is empty.");
@@ -125,9 +134,10 @@ namespace GuestbookApp
                 int index;
                 while (true)
                 {
+                    // Ask for user input (number of entry to delete)
                     Write("\nEnter the number of the entry you want to delete: ");
                     string input = ReadLine()!;
-                    if (int.TryParse(input, out index) && index >= 0 && index < guestbook.Count)
+                    if (int.TryParse(input, out index) && index >= 0 && index < guestbook.Count) // Validate user input
                     {
                         break; // Valid index
                     }
@@ -136,15 +146,14 @@ namespace GuestbookApp
 
                 guestbook.RemoveAt(index); //Remove the entry
 
-                // Save update guesbook
+                // Save updated guestbook
                 string json = JsonSerializer.Serialize(guestbook, new JsonSerializerOptions { WriteIndented = true });
                 File.WriteAllText("guestbook.json", json);
 
                 Clear();
                 WriteLine("\nEntry deleted succesfully.");
 
-
-                // Show updated list immediately
+                // Show updated list
                 WriteLine("\n**** UPDATED GUESTBOOK ****\n");
                 ShowEntries(guestbook);
 
@@ -157,8 +166,10 @@ namespace GuestbookApp
             }
         }
 
+        // Method to display saved entries
         static void ShowEntries(List<GuestbookEntry> guestbook)
         {
+            // Check if there are any entries to display
             if (guestbook.Count == 0)
             {
                 WriteLine("The guesbook is empty :-(");
@@ -175,29 +186,3 @@ namespace GuestbookApp
 
     }
 }
-/* 
-Ett enklare menysystem hanterar de val som ska kunna genomföras: 
-1. Lägg till inlägg ska ge dig valet att mata in ägare samt det nya inlägget. Dessa fält får ej vara tomma.
-2. Ta bort inlägg ska fråga efter valt index (till vänster i listan av inlägg på bild ovan) att ta bort innan radering
-av inlägget. 
-*/
-
-/*
- Inläggen ska innehålla två fält, "ägare till inlägget" samt texten för inlägget. 
-*/
-
-/*
-Gästbokens inlägg ska serialiseras/deserialiseras samt sparas på fil antingen binärt eller som json, 
-så att tidigare inmatad data finns lagrad
-*/
-
-/*
-Felhantering i from av en kontroll så att inmatningsfält inte är tomma. 
-*/
-
-/*
- Efter varje genomfört menyval ska skärmen skrivas om. Detta sker enklast genom att man "rensar" konsolen och 
-sedan ritar/skriver om den. Se Console.Clear för mer information om hur detta kan ske. 
-*/
-
-
