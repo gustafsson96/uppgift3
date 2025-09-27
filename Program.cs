@@ -141,7 +141,7 @@ namespace GuestbookApp
                     {
                         break; // Valid index
                     }
-                    WriteLine("Invalid number, please try again");
+                    WriteLine("\nInvalid number, please try again");
                 }
 
                 guestbook.RemoveAt(index); //Remove the entry
