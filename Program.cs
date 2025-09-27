@@ -158,7 +158,7 @@ namespace GuestbookApp
                 ShowEntries(guestbook);
 
                 // Ask user if they want to delete another
-                WriteLine("\nPress 1 to delete another entry, or any other key to return to the menu");
+                WriteLine("\nPress 1 to delete another entry, or any other key to return to menu");
                 string choice = ReadLine()!;
                 deleting = choice == "1";
                 Clear();
