@@ -50,7 +50,7 @@ namespace GuestbookApp
                         Clear();
                         WriteLine("**** GUESTBOOK ENTRIES ****\n");
                         ShowEntries(guestbook);
-                        WriteLine("\nPress any button to go back to the menu.");
+                        WriteLine("\nPress any button to return to menu");
                         ReadKey();
                         break;
 
@@ -59,7 +59,7 @@ namespace GuestbookApp
                         Clear();
                         WriteLine("**** CREATE NEW ENTRY ****\n");
                         AddEntry(guestbook);
-                        WriteLine("\nSucess! Press any button to go back to the menu.");
+                        WriteLine("\nSucess! Press any button to return to menu");
                         ReadKey();
                         break;
                     // Option 3: Delete an entry
@@ -93,7 +93,7 @@ namespace GuestbookApp
                 author = ReadLine()!;
                 if (string.IsNullOrWhiteSpace(author))
                 {
-                    WriteLine("\nName cannot be empty. Please try again.\n");
+                    WriteLine("\nName cannot be empty, please try again\n");
                 }
             }
 
@@ -104,7 +104,7 @@ namespace GuestbookApp
                 entryText = ReadLine()!;
                 if (string.IsNullOrWhiteSpace(entryText))
                 {
-                    WriteLine("\nText field cannot be empty. Please try again.\n");
+                    WriteLine("\nText field cannot be empty, please try again\n");
                 }
             }
 
@@ -122,7 +122,7 @@ namespace GuestbookApp
             // Check if there are any entries to display
             if (guestbook.Count == 0)
             {
-                WriteLine("The guestbook is empty.");
+                WriteLine("The guestbook is empty");
                 return;
             }
 
@@ -141,7 +141,7 @@ namespace GuestbookApp
                     {
                         break; // Valid index
                     }
-                    WriteLine("Invalid number. Please try again.");
+                    WriteLine("Invalid number, please try again");
                 }
 
                 guestbook.RemoveAt(index); //Remove the entry
@@ -151,14 +151,14 @@ namespace GuestbookApp
                 File.WriteAllText("guestbook.json", json);
 
                 Clear();
-                WriteLine("\nEntry deleted succesfully.");
+                WriteLine("\nEntry deleted succesfully");
 
                 // Show updated list
                 WriteLine("\n**** UPDATED GUESTBOOK ****\n");
                 ShowEntries(guestbook);
 
                 // Ask user if they want to delete another
-                WriteLine("\nPress 1 to delete another entry, or any other key to return to the menu.");
+                WriteLine("\nPress 1 to delete another entry, or any other key to return to the menu");
                 string choice = ReadLine()!;
                 deleting = choice == "1";
                 Clear();
@@ -172,7 +172,7 @@ namespace GuestbookApp
             // Check if there are any entries to display
             if (guestbook.Count == 0)
             {
-                WriteLine("The guesbook is empty :-(");
+                WriteLine("The guesbook is empty");
             }
             else
             {
