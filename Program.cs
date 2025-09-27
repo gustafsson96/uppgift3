@@ -39,7 +39,7 @@ namespace GuestbookApp
                 WriteLine("2. Add new entry");
                 WriteLine("3. Delete an entry");
                 WriteLine("4. Exit");
-                WriteLine("Choose an option: ");
+                Write("\nChoose an option: ");
 
                 string choice = ReadLine()!;
 
@@ -73,7 +73,7 @@ namespace GuestbookApp
                         running = false;
                         break;
                     default:
-                        WriteLine("Invalid option. Press any key to continue.");
+                        WriteLine("\nInvalid option, press any key to try again");
                         ReadKey();
                         break;
                 }
